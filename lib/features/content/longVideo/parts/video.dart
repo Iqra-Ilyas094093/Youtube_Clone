@@ -223,7 +223,7 @@ class _VideoState extends State<Video> {
                   ],
                 ),
               ),
-            ),
+            )                      ,
            firstContentPage(),
           ],
         ),
