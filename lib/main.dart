@@ -1,7 +1,8 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:youtube_clone/view/screens/navigation.dart';
+import 'package:youtube_clone/view/screens/home_screen.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 void main() async{
 
@@ -15,10 +16,26 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
-      theme:ThemeData.light(),
-      home: Navigation(),
+      title: 'YT Clone',
+      theme: ThemeData(
+        useMaterial3: true,
+        brightness: Brightness.light,
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: const Color(0xFFF20D0D),
+          brightness: Brightness.light,
+        ),
+        fontFamily: 'Spline Sans',
+      ),
+      darkTheme: ThemeData(
+        useMaterial3: true,
+        brightness: Brightness.dark,
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: const Color(0xFFF20D0D),
+          brightness: Brightness.dark,
+        ),
+        textTheme: GoogleFonts.splineSansTextTheme(),
+      ),
+      home: HomeScreen(),
     );
   }
 }
