@@ -168,7 +168,7 @@ class _SubscriptionsScreenState extends State<SubscriptionsScreen> {
           // Horizontal Channel Scroller
           SliverToBoxAdapter(
             child: SizedBox(
-              height: 90,
+              height:115,
               child: ListView.builder(
                 scrollDirection: Axis.horizontal,
                 padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
@@ -186,8 +186,6 @@ class _SubscriptionsScreenState extends State<SubscriptionsScreen> {
         ],
       ),
 
-      // Bottom Navigation Bar
-      bottomNavigationBar: _buildBottomNavigationBar(),
     );
   }
 
@@ -429,50 +427,4 @@ class _SubscriptionsScreenState extends State<SubscriptionsScreen> {
     );
   }
 
-  Widget _buildBottomNavigationBar() {
-    return Container(
-      decoration: BoxDecoration(
-        border: Border(
-          top: BorderSide(
-            color: Colors.white.withOpacity(0.1),
-            width: 0.5,
-          ),
-        ),
-      ),
-      child: BottomNavigationBar(
-        currentIndex: _currentIndex,
-        onTap: (index) {
-          setState(() {
-            _currentIndex = index;
-          });
-        },
-        type: BottomNavigationBarType.fixed,
-        backgroundColor: Theme.of(context).colorScheme.background,
-        selectedItemColor: Theme.of(context).colorScheme.primary,
-        unselectedItemColor: Theme.of(context).colorScheme.onSurface.withOpacity(0.7),
-        items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.subscriptions),
-            label: 'Subscriptions',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.add_circle),
-            label: '',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.movie),
-            label: 'Shorts',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.video_library),
-            label: 'Library',
-          ),
-        ],
-      ),
-    );
-  }
 }

@@ -1,4 +1,7 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:youtube_clone/view/screens/search_screen.dart';
+import 'package:youtube_clone/view/screens/video_player_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -8,7 +11,6 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  int _currentIndex = 0;
 
   final List<String> categories = [
     'All',
@@ -95,7 +97,9 @@ class _HomeScreenState extends State<HomeScreen> {
                 icon: const Icon(Icons.notifications),
               ),
               IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=>SearchResultsScreen()));
+                },
                 icon: const Icon(Icons.search),
               ),
               Container(
@@ -133,6 +137,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     margin: const EdgeInsets.only(right: 12, top: 12),
                     padding: const EdgeInsets.symmetric(horizontal: 16),
                     decoration: BoxDecoration(
+                      // color: Colors.grey,
                       color: isSelected
                           ? Theme.of(context).colorScheme.onBackground
                           : Theme.of(context)
@@ -166,44 +171,9 @@ class _HomeScreenState extends State<HomeScreen> {
                 final video = videos[index];
                 return VideoCard(video: video);
               },
+              // childCount: ,
               childCount: videos.length,
             ),
-          ),
-        ],
-      ),
-
-      // Bottom Navigation Bar
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _currentIndex,
-        onTap: (index) {
-          setState(() {
-            _currentIndex = index;
-          });
-        },
-        type: BottomNavigationBarType.fixed,
-        backgroundColor: Theme.of(context).colorScheme.background,
-        selectedItemColor: Theme.of(context).colorScheme.primary,
-        unselectedItemColor: Theme.of(context).colorScheme.onSurface,
-        items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.play_arrow),
-            label: 'Shorts',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.add),
-            label: '',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.subscriptions),
-            label: 'Subscriptions',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.video_library),
-            label: 'Library',
           ),
         ],
       ),
@@ -225,15 +195,18 @@ class VideoCard extends StatelessWidget {
           // Thumbnail
           Stack(
             children: [
-              Container(
-                width: double.infinity,
-                height: 200,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(12),
-                  image: DecorationImage(
-                    image: NetworkImage(video['thumbnail']),
-                    fit: BoxFit.cover,
+              GestureDetector(
+                onTap: (){
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=>VideoPlayerScreen()));
+                },
+                child: Container(
+                  width: double.infinity,
+                  height: 200,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(12),
+
                   ),
+                  child: CachedNetworkImage(imageUrl: video['thumbnail'],fit: BoxFit.cover,),
                 ),
               ),
               Positioned(
@@ -242,11 +215,13 @@ class VideoCard extends StatelessWidget {
                 child: Container(
                   padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
                   decoration: BoxDecoration(
+                    // color: Colors.transparent,
                     color: Colors.black.withOpacity(0.7),
                     borderRadius: BorderRadius.circular(4),
                   ),
                   child: Text(
-                    video['duration'],
+                    video['duration']
+                    ,
                     style: const TextStyle(
                       color: Colors.white,
                       fontSize: 12,
@@ -279,6 +254,7 @@ class VideoCard extends StatelessWidget {
                         video['title'],
                         style: const TextStyle(
                           fontSize: 16,
+                          color: Colors.white,
                           fontWeight: FontWeight.bold,
                           height: 1.2,
                         ),
@@ -287,6 +263,7 @@ class VideoCard extends StatelessWidget {
                       ),
                       const SizedBox(height: 4),
                       Text(
+
                         '${video['channel']} • ${video['views']} • ${video['time']}',
                         style: TextStyle(
                           fontSize: 14,

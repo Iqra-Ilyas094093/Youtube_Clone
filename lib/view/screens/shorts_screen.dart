@@ -144,7 +144,7 @@ class _ShortVideoCardState extends State<_ShortVideoCard> {
 
           // Content Overlay
           Positioned(
-            bottom: 80, // Above bottom navigation
+            bottom: 5, // Above bottom navigation
             left: 0,
             right: 0,
             child: Padding(
