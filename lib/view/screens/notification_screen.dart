@@ -5,15 +5,17 @@ class NotificationsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-      body: Column(
-        children: [
-          // Top App Bar
-          _buildAppBar(context),
-          // Notifications Feed
-          Expanded(
-            child: _buildNotificationsFeed(context),
-          ),
-        ],
+      body: SafeArea(
+        child: Column(
+          children: [
+            // Top App Bar
+            _buildAppBar(context),
+            // Notifications Feed
+            Expanded(
+              child: _buildNotificationsFeed(context),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -32,14 +34,19 @@ class NotificationsScreen extends StatelessWidget {
       child: Row(
         children: [
           // Back Button
-          Container(
-            width: 48,
-            height: 48,
-            child: Icon(
-              Icons.arrow_back,
-              color: Theme.of(context).brightness == Brightness.dark
-                  ? Colors.white
-                  : Colors.black,
+          GestureDetector(
+            onTap: (){
+              Navigator.pop(context);
+            },
+            child: Container(
+              width: 48,
+              height: 48,
+              child: Icon(
+                Icons.arrow_back,
+                color: Theme.of(context).brightness == Brightness.dark
+                    ? Colors.white
+                    : Colors.black,
+              ),
             ),
           ),
           // Title

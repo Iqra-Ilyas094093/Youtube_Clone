@@ -60,6 +60,7 @@ dependencies:
   youtube_player_flutter: ^9.1.1
   wakelock_plus: ^1.2.11
   google_fonts: ^6.3.2
+  http: ^1.6.0
 
 dev_dependencies:
   auto_route_generator: ^10.0.1

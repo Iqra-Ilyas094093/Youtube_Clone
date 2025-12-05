@@ -144,7 +144,7 @@ class _ShortVideoCardState extends State<_ShortVideoCard> {
 
           // Content Overlay
           Positioned(
-            bottom: 5, // Above bottom navigation
+            bottom: 40, // Above bottom navigation
             left: 0,
             right: 0,
             child: Padding(
@@ -162,8 +162,7 @@ class _ShortVideoCardState extends State<_ShortVideoCard> {
                           children: [
                             CircleAvatar(
                               radius: 20,
-                              backgroundImage:
-                              NetworkImage(widget.short['avatar']),
+                              backgroundImage: NetworkImage(widget.short['avatar']),
                             ),
                             const SizedBox(width: 12),
                             Text(
@@ -177,8 +176,7 @@ class _ShortVideoCardState extends State<_ShortVideoCard> {
                             const SizedBox(width: 12),
                             Container(
                               height: 32,
-                              padding:
-                              const EdgeInsets.symmetric(horizontal: 16),
+                              padding: const EdgeInsets.symmetric(horizontal: 16),
                               decoration: BoxDecoration(
                                 color: const Color(0xFFF20D0D),
                                 borderRadius: BorderRadius.circular(8),

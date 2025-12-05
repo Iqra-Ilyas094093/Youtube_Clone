@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:youtube_clone/view/screens/notification_screen.dart';
 import 'package:youtube_clone/view/screens/search_screen.dart';
 import 'package:youtube_clone/view/screens/video_player_screen.dart';
 
@@ -59,6 +60,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.background,
       body: CustomScrollView(
@@ -67,7 +69,7 @@ class _HomeScreenState extends State<HomeScreen> {
           SliverAppBar(
             pinned: true,
             floating: true,
-            backgroundColor: Theme.of(context).colorScheme.background,
+            // backgroundColor: Theme.of(context).colorScheme.background,
             elevation: 0,
             title: Row(
               children: [
@@ -93,7 +95,9 @@ class _HomeScreenState extends State<HomeScreen> {
                 icon: const Icon(Icons.cast),
               ),
               IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=>NotificationsScreen()));
+                },
                 icon: const Icon(Icons.notifications),
               ),
               IconButton(
@@ -137,7 +141,6 @@ class _HomeScreenState extends State<HomeScreen> {
                     margin: const EdgeInsets.only(right: 12, top: 12),
                     padding: const EdgeInsets.symmetric(horizontal: 16),
                     decoration: BoxDecoration(
-                      // color: Colors.grey,
                       color: isSelected
                           ? Theme.of(context).colorScheme.onBackground
                           : Theme.of(context)
@@ -171,7 +174,6 @@ class _HomeScreenState extends State<HomeScreen> {
                 final video = videos[index];
                 return VideoCard(video: video);
               },
-              // childCount: ,
               childCount: videos.length,
             ),
           ),
@@ -204,7 +206,7 @@ class VideoCard extends StatelessWidget {
                   height: 200,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(12),
-
+                    color: Colors.grey
                   ),
                   child: CachedNetworkImage(imageUrl: video['thumbnail'],fit: BoxFit.cover,),
                 ),
@@ -215,13 +217,11 @@ class VideoCard extends StatelessWidget {
                 child: Container(
                   padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
                   decoration: BoxDecoration(
-                    // color: Colors.transparent,
                     color: Colors.black.withOpacity(0.7),
                     borderRadius: BorderRadius.circular(4),
                   ),
                   child: Text(
-                    video['duration']
-                    ,
+                    video['duration'],
                     style: const TextStyle(
                       color: Colors.white,
                       fontSize: 12,
@@ -263,7 +263,6 @@ class VideoCard extends StatelessWidget {
                       ),
                       const SizedBox(height: 4),
                       Text(
-
                         '${video['channel']} • ${video['views']} • ${video['time']}',
                         style: TextStyle(
                           fontSize: 14,

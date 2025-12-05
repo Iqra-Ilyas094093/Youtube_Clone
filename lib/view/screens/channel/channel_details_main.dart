@@ -240,7 +240,7 @@ class _ChannelDetailsScreenState extends State<ChannelDetailsScreen> {
               ),
             ),
           ),
-          SliverPersistentHeader(delegate:Container()),
+          // SliverPersistentHeader(delegate:Container()),
           SliverToBoxAdapter(child: tabWidget[_selectedTab],),
           // Videos Grid
           // SliverPadding(

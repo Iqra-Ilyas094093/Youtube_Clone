@@ -50,7 +50,7 @@ class MyApp extends StatelessWidget {
         ),
         textTheme: GoogleFonts.splineSansTextTheme(),
       ),
-      home: ChannelDetailsScreen(),
+      home: Navigation(),
     );
   }
 }
