@@ -4,15 +4,15 @@ import 'dart:developer' as dev;
 import 'package:http/http.dart'as http;
 
 class ApiServices{
-  final String baseUrl = 'www.googleapis.com/youtube/v3/';
+  final String baseUrl = 'www.googleapis.com';
   static const String apiKey  = 'AIzaSyA3XBQkg-qFAeyq7l7ecn9ZVpoKjORtJfk';
 
-  Future<Map<String ,dynamic>> getApiCalls(String endpoint,{Map<String,dynamic>? params})async{
+  Future<Map<String ,dynamic>> getApiCalls(String endpoint,{Map<String,dynamic>? params,})async{
     final queryParameter = {
       'key':apiKey,
       ...?params
     };
-    final uri = Uri.http(baseUrl,endpoint,queryParameter);
+    final uri = Uri.https(baseUrl,endpoint,queryParameter);
     dev.log('url for $endpoint is $uri');
     final response = await http.get(uri);
     if(response.statusCode == 200){
